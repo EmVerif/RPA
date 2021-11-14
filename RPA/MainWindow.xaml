@@ -1,0 +1,51 @@
+﻿<Window x:Class="RPA.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:RPA._10_ViewModel"
+        xmlns:common="clr-namespace:RPA._90_Common"
+        xmlns:local="clr-namespace:RPA"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500" MinWidth="100"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*" MinWidth="100"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" MinHeight="100"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="100" MinHeight="100"/>
+            </Grid.RowDefinitions>
+            <common:CustomTextEditor x:Name="CustomTextEditor"
+                                     Grid.Row="0"
+                                     FontSize="10pt"
+                                     SyntaxHighlighting="C#"
+                                     ShowLineNumbers="True"
+                                     Document="{Binding Script}"
+                                     IsReadOnly="{Binding IsReadOnly}"
+                                     />
+            <GridSplitter Grid.Row="1"
+                          HorizontalAlignment="Stretch"
+                          />
+            <Button Grid.Row="2"
+                    Content="{Binding ButtonDisplay}"
+                    Command="{Binding Button}"
+                    />
+        </Grid>
+        <GridSplitter Grid.Column="1"
+                      HorizontalAlignment="Stretch"
+                      />
+        <TextBox Grid.Column="2"
+                 Text="{Binding Log, Mode=OneWay}"
+                 IsReadOnly="True"
+                 VerticalScrollBarVisibility="Visible"
+                 />
+    </Grid>
+</Window>
