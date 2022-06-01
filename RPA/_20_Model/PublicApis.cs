@@ -118,6 +118,11 @@ namespace RPA._20_Model
             }
         }
 
+        public void ForceEnd()
+        {
+            throw new Exception("コマンド強制終了");
+        }
+
         public void LogOut(string Log)
         {
             CheckForceTerm();
